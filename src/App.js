@@ -1,24 +1,59 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
 
+import Dashboard from "./pages/Dashboard";
+import AddFood from './pages/AddFood/AddFood'
+import FoodList from './pages/FoodList'
+import { useContext } from "react";
+import { AuthContext } from "./context/AuthContext";
+// import AddFood from "./pages/AddFood/AddFood";
+// import FoodList from "./pages/FoodList";
+import {foodInputs} from './helper/formsource'
 function App() {
+  const { currentUser } = useContext(AuthContext)
+
+  const RequireAuth = ({ children }) => {
+    return currentUser ? children : <Navigate to="/admin/login" />;
+  };
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />}></Route>
+
+          <Route path="/admin">
+            <Route path="/admin/login" element={<Login />}></Route>
+            <Route
+              index
+              element={
+                <RequireAuth>
+                  <Dashboard />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/admin/addfood"
+              element={
+                <RequireAuth>
+                  <AddFood foodInputs={foodInputs} />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/admin/foodlist"
+              element={
+                <RequireAuth>
+                  <FoodList />
+                </RequireAuth>
+              }
+            />
+          </Route>
+        </Routes>
+      </BrowserRouter>
+    </>
   );
 }
 
