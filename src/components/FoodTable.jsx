@@ -1,7 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import {
   collection,
-  getDocs,
   deleteDoc,
   doc,
   onSnapshot,
@@ -9,16 +8,21 @@ import {
 import { db } from "../firebase";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import Modal from "./Modal";
+import { Link } from "react-router-dom";
+
+
 
 const FoodTable = () => {
   const idFoodRef = useRef();
   const imgNameRef = useRef();
+  const [isLoading, setIsLoading] = useState(false)
   const [modal, setModal] = useState({
     isLoading: false,
     id: "",
     img_name: "",
   });
-
+  const [data, setData] = useState([]);
+  const storage = getStorage();
 
   const handleModal = (isLoading, id, img_name) => {
     setModal({
@@ -34,9 +38,10 @@ const FoodTable = () => {
     imgNameRef.current = img_name;
   };
 
+  // Handle removing item
   const areUSureDelete = async (choose) => {
     if (choose) {
-      console.log(choose, idFoodRef.current, imgNameRef.current)
+      // console.log(choose, idFoodRef.current, imgNameRef.current)
       const id = idFoodRef.current;
       const img = imgNameRef.current;
       try {
@@ -61,27 +66,12 @@ const FoodTable = () => {
     }
   };
 
-  const [data, setData] = useState([]);
-  const storage = getStorage();
 
 
+  // Hanlde getting data from firestore
   useEffect(() => {
-    // const fetchData = async () => {
-    //   let list = [];
-    //   try {
-    //     const querySnapshot = await getDocs(collection(db, "foods"));
-    //     querySnapshot.forEach((doc) => {
-    //       list.push({ id: doc.id, ...doc.data() });
-    //     });
-    //     setData(list);
-    //     console.log(list);
-    //   } catch (err) {
-    //     console.log(err);
-    //   }
-    // };
-    // fetchData();
-
     // LISTEN (REALTIME)
+    setIsLoading(true);
     const unsub = onSnapshot(
       collection(db, "foods"),
       (snapShot) => {
@@ -90,9 +80,11 @@ const FoodTable = () => {
           list.push({ id: doc.id, ...doc.data() });
         });
         setData(list);
+        setIsLoading(false);
       },
       (error) => {
         console.log(error);
+        setIsLoading(false);
       }
     );
 
@@ -101,7 +93,13 @@ const FoodTable = () => {
     };
   }, []);
 
-
+  if (isLoading) {
+    return (
+      <div>
+        <p>Loading...</p>
+      </div>
+    )
+  }
   return (
     <>
       <table className="min-w-full text-center mt-3">
@@ -171,9 +169,11 @@ const FoodTable = () => {
               </td>
               <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
                 <div className="space-x-2">
-                  <button className="text-white rounded-md bg-gray-700 px-3 py-1">
-                    View
-                  </button>
+                  <Link to={`/admin/food/${item.id}`}>
+                    <button className="text-white rounded-md bg-gray-700 px-3 py-1">
+                      View
+                    </button>
+                  </Link>
                   <button onClick={() => handleDelete(item.id, item.img_name)} className="text-white rounded-md bg-red-500 px-3 py-1">
                     Delete
                   </button>

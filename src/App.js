@@ -1,21 +1,26 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Home from "./pages/Home";
-import Login from "./pages/Login";
+import Login from "./pages/Admin/Login";
 
-import Dashboard from "./pages/Dashboard";
-import AddFood from './pages/AddFood/AddFood'
-import FoodList from './pages/FoodList'
+import Dashboard from "./pages/Admin/Dashboard";
+import AddFood from './pages/Admin/AddFood/AddFood'
+import FoodList from './pages/Admin/FoodList'
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
 // import AddFood from "./pages/AddFood/AddFood";
 // import FoodList from "./pages/FoodList";
-import {foodInputs} from './helper/formsource'
+import { foodInputs } from './helper/formsource'
+import SingleFood from "./pages/Admin/SingleFood/SingleFood";
 function App() {
   const { currentUser } = useContext(AuthContext)
 
   const RequireAuth = ({ children }) => {
     return currentUser ? children : <Navigate to="/admin/login" />;
+  };
+
+  const CheckIfLogin = ({ children }) => {
+    return currentUser ? <Navigate to="/admin" /> : children;
   };
 
   return (
@@ -25,7 +30,13 @@ function App() {
           <Route path="/" element={<Home />}></Route>
 
           <Route path="/admin">
-            <Route path="/admin/login" element={<Login />}></Route>
+
+            <Route path="/admin/login" element={
+              <CheckIfLogin>
+                <Login />
+              </CheckIfLogin>
+            }></Route>
+
             <Route
               index
               element={
@@ -47,6 +58,14 @@ function App() {
               element={
                 <RequireAuth>
                   <FoodList />
+                </RequireAuth>
+              }
+            />
+            <Route
+              path="/admin/food/:id"
+              element={
+                <RequireAuth>
+                  <SingleFood />
                 </RequireAuth>
               }
             />

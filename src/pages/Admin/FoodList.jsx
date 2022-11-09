@@ -1,9 +1,9 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import FoodCard from "../components/FoodCard";
-import FoodTable from "../components/FoodTable";
-import Sidebar from "../components/Sidebar";
-import Topbar from "../components/Topbar";
+import FoodCard from "../../components/FoodCard";
+import FoodTable from "../../components/FoodTable";
+import Sidebar from "../../components/Sidebar";
+import Topbar from "../../components/Topbar";
 
 
 

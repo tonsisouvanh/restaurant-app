@@ -7,6 +7,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 
 import { AuthContextProvider } from "./context/AuthContext";
+import { FoodContextProvider } from "./context/FoodContext";
 
 
 
@@ -14,7 +15,9 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <AuthContextProvider>
-      <App />
+      <FoodContextProvider>
+        <App />
+      </FoodContextProvider>
     </AuthContextProvider>
   </React.StrictMode>
 );

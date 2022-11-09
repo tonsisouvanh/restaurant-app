@@ -20,7 +20,7 @@ export const foodInputs = [
   {
     id: "price",
     label: "Price",
-    type: "text",
+    type: "number",
     placeholder: "Food Price",
   },
   // {
