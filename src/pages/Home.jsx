@@ -1,9 +1,3 @@
-// import About from "../components/About";
-// import Footer from "../components/Footer";
-// import GallerySlider from "../components/GallerySlider";
-// import OurMenu from "../components/OurMenu";
-// import SpecialMenu from "../components/SpecialMenu";
-
 import About from '../components/About'
 import Footer from '../components/Footer'
 import GallerySlider from '../components/GallerySlider'

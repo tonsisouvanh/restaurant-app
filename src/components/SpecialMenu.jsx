@@ -19,8 +19,8 @@ const foods = [
     url: "https://images.unsplash.com/photo-1637806930600-37fa8892069d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80",
   },
   {
-    id: 3,
-    url: "https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+    id: 4,
+    url: "https://firebasestorage.googleapis.com/v0/b/phayvanh-f4f13.appspot.com/o/1668780853758duck1.jpg?alt=media&token=c8736831-de23-4026-af43-6bb03287dd91",
   },
 ];
 
@@ -138,7 +138,8 @@ const SpecialMenu = () => {
                   </p>
                 </div>
                 <img
-                  className="absolute inset-0 w-full h-full z-[-1] transition-all group-hover:scale-110"
+                  // className="absolute inset-0 w-full h-full z-[-1] transition-all group-hover:scale-110"
+                  className="object-cover w-full h-full z-[-2] transition-all group-hover:scale-110"
                   src={item.url}
                   alt="/"
                 />

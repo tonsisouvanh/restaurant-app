@@ -8,10 +8,9 @@ import AddFood from './pages/Admin/AddFood/AddFood'
 import FoodList from './pages/Admin/FoodList'
 import { useContext } from "react";
 import { AuthContext } from "./context/AuthContext";
-// import AddFood from "./pages/AddFood/AddFood";
-// import FoodList from "./pages/FoodList";
 import { foodInputs } from './helper/formsource'
 import SingleFood from "./pages/Admin/SingleFood/SingleFood";
+
 function App() {
   const { currentUser } = useContext(AuthContext)
 
@@ -28,15 +27,12 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />}></Route>
-
           <Route path="/admin">
-
             <Route path="/admin/login" element={
               <CheckIfLogin>
                 <Login />
               </CheckIfLogin>
             }></Route>
-
             <Route
               index
               element={

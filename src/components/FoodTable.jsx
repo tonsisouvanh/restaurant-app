@@ -150,7 +150,9 @@ const FoodTable = () => {
                 {item.title}
               </td>
               <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap">
-                {item.description}
+                {/* { item.description.length >= 50 ? item.description.slice(0,item.description.length/3) + "..." : item.description} */}
+                {item.description.length > 20 ? item.description.substring(0,10) + "..." : item.description}
+
               </td>
               <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap">
                 {item.price}
