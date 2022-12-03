@@ -12,16 +12,14 @@ import { Link } from "react-router-dom";
 
 
 
-const FoodTable = () => {
+const FoodTable = ({foods}) => {
   const idFoodRef = useRef();
   const imgNameRef = useRef();
-  const [isLoading, setIsLoading] = useState(false)
   const [modal, setModal] = useState({
     isLoading: false,
     id: "",
     img_name: "",
   });
-  const [data, setData] = useState([]);
   const storage = getStorage();
 
   const handleModal = (isLoading, id, img_name) => {
@@ -54,7 +52,8 @@ const FoodTable = () => {
         });
 
         await deleteDoc(doc(db, "foods", id));
-        setData(data.filter((item) => item.id !== id));
+        // setData(data.filter((item) => item.id !== id));
+
         handleModal(false, '', '');
 
       } catch (err) {
@@ -69,37 +68,37 @@ const FoodTable = () => {
 
 
   // Hanlde getting data from firestore
-  useEffect(() => {
-    // LISTEN (REALTIME)
-    setIsLoading(true);
-    const unsub = onSnapshot(
-      collection(db, "foods"),
-      (snapShot) => {
-        let list = [];
-        snapShot.docs.forEach((doc) => {
-          list.push({ id: doc.id, ...doc.data() });
-        });
-        setData(list);
-        setIsLoading(false);
-      },
-      (error) => {
-        console.log(error);
-        setIsLoading(false);
-      }
-    );
+  // useEffect(() => {
+  //   // LISTEN (REALTIME)
+  //   setIsLoading(true);
+  //   const unsub = onSnapshot(
+  //     collection(db, "foods"),
+  //     (snapShot) => {
+  //       let list = [];
+  //       snapShot.docs.forEach((doc) => {
+  //         list.push({ id: doc.id, ...doc.data() });
+  //       });
+  //       setData(list);
+  //       setIsLoading(false);
+  //     },
+  //     (error) => {
+  //       console.log(error);
+  //       setIsLoading(false);
+  //     }
+  //   );
 
-    return () => {
-      unsub();
-    };
-  }, []);
+  //   return () => {
+  //     unsub();
+  //   };
+  // }, []);
 
-  if (isLoading) {
-    return (
-      <div>
-        <p>Loading...</p>
-      </div>
-    )
-  }
+  // if (isLoading) {
+  //   return (
+  //     <div>
+  //       <p>Loading...</p>
+  //     </div>
+  //   )
+  // }
   return (
     <>
       <table className="min-w-full text-center mt-3">
@@ -144,13 +143,12 @@ const FoodTable = () => {
           </tr>
         </thead>
         <tbody>
-          {data.map(item => (
+          {foods.map(item => (
             <tr key={item.id} className="bg-white border-b">
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 {item.title}
               </td>
               <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap">
-                {/* { item.description.length >= 50 ? item.description.slice(0,item.description.length/3) + "..." : item.description} */}
                 {item.description.length > 20 ? item.description.substring(0,10) + "..." : item.description}
 
               </td>

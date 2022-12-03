@@ -2,42 +2,42 @@ import Slider from "react-slick";
 // import './style.css'
 
 
-const foods = [
-  {
-    id: 0,
-    url: "https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-  },
-  {
-    id: 1,
-    url: "https://images.unsplash.com/photo-1627308595186-e6bb36712645?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-  },
-  {
-    id: 2,
-    url: "https://images.unsplash.com/photo-1607330289024-1535c6b4e1c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
-  },
-  {
-    id: 3,
-    url: "https://images.unsplash.com/photo-1637806930600-37fa8892069d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80",
-  },
-  {
-    id: 4,
-    url: "https://www.seriouseats.com/thmb/QacghgdVR86YleHBLRLkpTRYD_8=/1500x1125/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2018__05__20180503-Guide-to-Lao-Food-Laab-Ped-Jai-Williams-1500x1125-156c9f763ed5416e9d9f355e3ffd1c21.jpg",
-  },
-  {
-    id: 5,
-    url: "https://www.laos-guide-999.com/images/Lao-food-kaopoon.jpg",
-  },
-  {
-    id: 6,
-    url: "https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-  },
-  {
-    id: 7,
-    url: "https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-  },
-];
+// const foods = [
+//   {
+//     id: 0,
+//     img: "https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+//   },
+//   {
+//     id: 1,
+//     img: "https://images.unsplash.com/photo-1627308595186-e6bb36712645?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
+//   },
+//   {
+//     id: 2,
+//     img: "https://images.unsplash.com/photo-1607330289024-1535c6b4e1c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
+//   },
+//   {
+//     id: 3,
+//     img: "https://images.unsplash.com/photo-1637806930600-37fa8892069d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80",
+//   },
+//   {
+//     id: 4,
+//     img: "https://www.seriouseats.com/thmb/QacghgdVR86YleHBLRLkpTRYD_8=/1500x1125/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2018__05__20180503-Guide-to-Lao-Food-Laab-Ped-Jai-Williams-1500x1125-156c9f763ed5416e9d9f355e3ffd1c21.jpg",
+//   },
+//   {
+//     id: 5,
+//     img: "https://www.laos-guide-999.com/images/Lao-food-kaopoon.jpg",
+//   },
+//   {
+//     id: 6,
+//     img: "https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+//   },
+//   {
+//     id: 7,
+//     img: "https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+//   },
+// ];
 
-const GallerySlider = () => {
+const GallerySlider = ({foods}) => {
   const settings = {
     className: "",
     dots: true,
@@ -91,10 +91,10 @@ const GallerySlider = () => {
         <div className="">
           <Slider className="overflow-x-clip" {...settings}>
             {foods.map((item) => (
-              <div key={item.id} className="overflow-hidden w-auto h-[220px] mx-0">
+              <div key={item.id} className="overflow-hidden w-auto h-[220px] mx-0 my-2">
                 <img
                   className="w-full h-full object-cover transition-all hover:scale-110"
-                  src={item.url}
+                  src={item.img}
                   alt="/"
                 />
               </div>

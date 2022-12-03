@@ -4,8 +4,8 @@ import Sidebar from '../../components/Sidebar'
 import Topbar from '../../components/Topbar'
 
 
-
 const Dashboard = () => {
+  const user = JSON.parse(localStorage.getItem("user"));
   return (
     <div className="flex w-full">
       <Sidebar />

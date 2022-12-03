@@ -1,17 +1,9 @@
 const FoodReducer = (state, action) => {
   switch (action.type) {
-    case "SETFOODS": {
-      console.log(action.payload)
-      return {
-        foods: action.payload,
-        isLoading: true,
-        isError: false
-      };
-    }
     case "GETFOODS":
-      return state.foods;
-    // isLoading: state.isLoading
-
+      return state;
+    case "DELETE":
+      return state.foods.filter(food => food.id !== action.payload.id);
     default:
       return state;
   }

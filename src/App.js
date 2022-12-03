@@ -22,6 +22,8 @@ function App() {
     return currentUser ? <Navigate to="/admin" /> : children;
   };
 
+  
+
   return (
     <>
       <BrowserRouter>

@@ -3,9 +3,9 @@ import { BsFacebook, BsFillTelephoneFill, BsTwitter } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { IoLocationSharp } from "react-icons/io5";
 
-const headerStyle: string = "text-xl font-bold lg:text-lg";
+const headerStyle = "text-xl font-bold lg:text-lg";
 
-const Footer = () => {
+const Footer = ({ foods }) => {
   return (
     <div className="bg-gray-800">
       <div className="rounded-div text-white px-3 py-10">
@@ -64,14 +64,17 @@ const Footer = () => {
           <div className="self-start w-full h-auto gap-5 flex flex-col items-center justify-center">
             <h2 className={headerStyle}>GALLERY</h2>
             <div className="grid grid-cols-2 gap-1">
-              <div className="w-full h-[100px]">
-                <img
-                  className="w-full h-full object-fit-cover"
-                  src="https://www.seriouseats.com/thmb/QacghgdVR86YleHBLRLkpTRYD_8=/1500x1125/filters:no_upscale():max_bytes(150000):strip_icc()/__opt__aboutcom__coeus__resources__content_migration__serious_eats__seriouseats.com__2018__05__20180503-Guide-to-Lao-Food-Laab-Ped-Jai-Williams-1500x1125-156c9f763ed5416e9d9f355e3ffd1c21.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="w-full h-[100px]">
+              {foods &&
+                foods.map((item) => (
+                  <div key={item.id} className="w-full h-[100px]">
+                    <img
+                      className="w-full h-full object-fit-cover"
+                      src={item.img}
+                      alt=""
+                    />
+                  </div>
+                ))}
+              {/* <div className="w-full h-[100px]">
                 <img
                   className="w-full h-full object-fit-cover"
                   src="https://www.laos-guide-999.com/images/Lao-food-kaopoon.jpg"
@@ -119,7 +122,7 @@ const Footer = () => {
                   src="https://laostravel.com/images/2020/12/Lao-Sausage-Sai-Oua.jpg"
                   alt=""
                 />
-              </div>
+              </div> */}
             </div>
           </div>
 

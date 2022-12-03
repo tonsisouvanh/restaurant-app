@@ -10,7 +10,7 @@ const FoodCard = () => {
           alt=""
         />
       </div>
-      <div className="p-3 text-sm flex flex-col gap-3">
+      <div className="p-3 text-~sm flex flex-col gap-3">
         <div className="flex items-center justify-between">
           <h3>Fried Egg</h3>
           <h3>$200</h3>

@@ -1,54 +1,47 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useContext } from "react";
 import { CgShoppingCart } from "react-icons/cg";
 import { MdChevronLeft, MdChevronRight } from "react-icons/md";
+import { FoodContextApi } from "../context/FoodContext";
+import FullSpinner from "./FullSpinner";
+import { truncateText } from "../utils/stringhandler";
+// const foods = [
+//   {
+//     id: 0,
+//     img: "https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+//   },
+//   {
+//     id: 1,
+//     img: "https://images.unsplash.com/photo-1627308595186-e6bb36712645?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
+//   },
+//   {
+//     id: 2,
+//     img: "https://images.unsplash.com/photo-1607330289024-1535c6b4e1c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
+//   },
+//   {
+//     id: 3,
+//     img: "https://images.unsplash.com/photo-1637806930600-37fa8892069d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80",
+//   },
+//   {
+//     id: 4,
+//     img: "https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+//   },
+//   {
+//     id: 5,
+//     img: "https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+//   },
+//   {
+//     id: 6,
+//     img: "https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+//   },
+//   {
+//     id: 7,
+//     img: "https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
+//   },
+// ];
 
-type Food = {
-  id: number;
-  url: string;
-};
-
-const foods: Food[] = [
-  {
-    id: 0,
-    url: "https://images.unsplash.com/photo-1618449840665-9ed506d73a34?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-  },
-  {
-    id: 1,
-    url: "https://images.unsplash.com/photo-1627308595186-e6bb36712645?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=735&q=80",
-  },
-  {
-    id: 2,
-    url: "https://images.unsplash.com/photo-1607330289024-1535c6b4e1c1?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=764&q=80",
-  },
-  {
-    id: 3,
-    url: "https://images.unsplash.com/photo-1637806930600-37fa8892069d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=685&q=80",
-  },
-  {
-    id: 4,
-    url: "https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-  },
-  {
-    id: 5,
-    url: "https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-  },
-  {
-    id: 6,
-    url: "https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-  },
-  {
-    id: 7,
-    url: "https://images.unsplash.com/photo-1574484284002-952d92456975?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=687&q=80",
-  },
-];
-
-// interface CustomArrow {
-//   className: string;
-//   style: object;
-//   onClick: React.MouseEventHandler<HTMLElement>;
-// }
-
-function OurMenu() {
+function OurMenu({ foods, loading }) {
+  // const { foods, loading } = FoodContextApi();
   // function SampleNextArrow(props: CustomArrow) {
   //   const { className, style, onClick } = props;
 
@@ -129,6 +122,10 @@ function OurMenu() {
   //   ],
   // };
 
+  if (loading) {
+    return <FullSpinner />;
+  }
+
   return (
     <div className="relative bg-menu-background w-full bg-cover bg-no-repeat">
       <div className="rounded-div px-3 py-8 md:py-10 lg:py-14">
@@ -175,23 +172,47 @@ function OurMenu() {
 
             {/* Grid menu */}
             <div className="grid grid-cols-1 gap-6 grid-flow-row sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              {foods.map((item) => (
-                <div key={item.id} className="overflow-hidden rounded-xl bg-[#232830] border-white border-2 transition-all hover:scale-[1.03]">
-                  <div className="w-auto border-b-8 border-yellow-500 h-[300px] lg:h-[230px] overflow-hidden rounded-bl-[4rem]">
-                    <img className="w-full h-full object-cover" src={item.url} alt="" />
-                  </div>
-                  <div className="flex flex-col gap-3 p-5">
-                    <h3 className="font-bold text-lg">Delicious Pizza</h3>
-                    <p className="text-sm">Lorem ipsum dolor sit amet consectetur adipisicing elit. Nulla mollitia iste veniam</p>
-                    <div className="w-full flex items-center justify-between">
-                      <span>$18</span>
-                      <div className="bg-yellow-500 p-1.5 rounded-full cursor-pointer">
-                        <CgShoppingCart />
+              {foods &&
+                foods.map((item) => (
+                  <div
+                    key={item.id}
+                    className="overflow-hidden rounded-xl bg-[#232830] border-white border-2 transition-all hover:scale-[1.03]"
+                  >
+                    <div className="w-full border-b-8 border-yellow-500 h-[300px] lg:h-[230px] overflow-hidden rounded-bl-[4rem]">
+                      <img
+                        className="w-full h-full object-cover"
+                        src={item.img}
+                        alt=""
+                      />
+                    </div>
+                    {/* <div className="h-full border flex flex-col gap-3 p-5"> */}
+                    <div className="w-full flex flex-col gap-3 p-3">
+                      <h3 className="font-bold text-lg">{item.title}</h3>
+                      <p className="text-sm">
+                        {truncateText(item.description, 20, 0, 100)}
+                      </p>
+                      <div className="w-full flex items-center justify-between">
+                        <span>${item.price}</span>
+                        <div className="bg-yellow-500 p-1.5 rounded-full cursor-pointer">
+                          <CgShoppingCart />
+                        </div>
                       </div>
                     </div>
+                    {/* <div className="border flex flex-col gap-3 p-5">
+                      <h3 className="font-bold text-lg">{item.title}</h3>
+                      <p className="text-sm">
+                        {truncateText(item.description, 20, 0, 100)}
+                      </p>
+                      <div className="w-full flex items-center justify-between">
+                        <span>${item.price}</span>
+                        <div className="bg-yellow-500 p-1.5 rounded-full cursor-pointer">
+                          <CgShoppingCart />
+                        </div>
+                      </div>
+                    </div> */}
+
                   </div>
-                </div>
-              ))}
+                ))}
             </div>
           </div>
         </div>

@@ -2,13 +2,21 @@ import React from "react";
 import { Link } from "react-router-dom";
 import FoodCard from "../../components/FoodCard";
 import FoodTable from "../../components/FoodTable";
+import FullSpinner from "../../components/FullSpinner";
 import Sidebar from "../../components/Sidebar";
 import Topbar from "../../components/Topbar";
+import { FoodContextApi } from "../../context/FoodContext";
 
 
 
 
 const FoodList = () => {
+  const {foods, loading} = FoodContextApi();
+
+  if(loading){
+    return <FullSpinner/>
+  }
+
   return (
     <div className="flex w-full">
       <Sidebar />
@@ -37,7 +45,7 @@ const FoodList = () => {
 
           {/* table */}
           <div className="hidden md:block">
-            <FoodTable />
+            <FoodTable foods={foods} />
           </div>
         </div>
       </div>
