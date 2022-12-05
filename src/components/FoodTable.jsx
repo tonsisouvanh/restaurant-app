@@ -148,17 +148,17 @@ const FoodTable = ({foods}) => {
               <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                 {item.title}
               </td>
-              <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap">
+              <td className="text-sm text-gray-900  px-6 py-2 whitespace-nowrap">
                 {item.description.length > 20 ? item.description.substring(0,10) + "..." : item.description}
 
               </td>
-              <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap">
+              <td className="text-sm text-gray-900  px-6 py-2 whitespace-nowrap">
                 {item.price}
               </td>
-              <td className="text-sm text-gray-900  px-6 py-4 whitespace-nowrap">
+              <td className="text-sm text-gray-900  px-6 py-2 whitespace-nowrap">
                 {item.category}
               </td>
-              <td className="text-sm flex justify-center text-gray-900 px-6 py-4 whitespace-nowrap">
+              <td className="text-sm flex justify-center text-gray-900 px-6 py-2 whitespace-nowrap">
                 <div className="w-[100px]">
                   <img
                     className="w-full h-full object-cover"
@@ -167,7 +167,7 @@ const FoodTable = ({foods}) => {
                   />
                 </div>
               </td>
-              <td className="text-sm text-gray-900 px-6 py-4 whitespace-nowrap">
+              <td className="text-sm text-gray-900 px-6 py-2 whitespace-nowrap">
                 <div className="space-x-2">
                   <Link to={`/admin/food/${item.id}`}>
                     <button className="text-white rounded-md bg-gray-700 px-3 py-1">

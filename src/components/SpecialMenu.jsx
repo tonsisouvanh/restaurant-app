@@ -91,7 +91,7 @@ const SpecialMenu = ({ foods, loading }) => {
                 </div>
                 <img
                   // className="absolute inset-0 w-full h-full z-[-1] transition-all group-hover:scale-110"
-                  className="object-cover w-full h-full z-[-2] transition-all group-hover:scale-110"
+                  className="absolute top-0 left-0 z-[-1] w-full h-full object-cover transition-all group-hover:scale-110"
                   src={item.img}
                   alt="/"
                 />
