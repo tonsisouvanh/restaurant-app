@@ -17,14 +17,14 @@ const Main = () => {
       top-0 left-0
       w-full h-full
       bg-gradient-to-b 
-      from-black"
+      from-black/80"
       ></div>
       {/* <div className="w-full h-[110vh]">
         <img className="w-full h-full object-cover" src={bgimg} alt="" />
       </div> */}
       {/* Welcome section */}
       <div className="rounded-div w-full h-full font-nunito px-3 flex items-center justify-center">
-        <div className="flex flex-col gap-6 text-white px-10 py-12 z-[1] rounded-md bg-black/50">
+        <div className="flex flex-col gap-6 text-white px-10 py-12 z-[1] rounded-md bg-black/40">
           <div className="font-bold w-full flex flex-col gap-4 md:gap-5 items-center justify-center">
             <h2 className="text-center text-3xl sm:text-3xl md:text-4xl lg:text-5xl">
               <span className="text-yellow-500">Welcome</span> to Lao - Thai

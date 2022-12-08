@@ -18,19 +18,19 @@ import {
 import { db } from "../firebase";
 import FoodReducer from "./FoodReducer";
 
-// const INITIAL_STATE = {
-//   foods: [],
-//   isLoading: false,
-// };
+const INITIAL_STATE = {
+  foods: [],
+  isLoading: true,
+};
 
-// export const FoodContext = createContext(INITIAL_STATE);
-const FoodContext = createContext();
+export const FoodContext = createContext(INITIAL_STATE);
+
+// const FoodContext = createContext();
 
 export const FoodContextProvider = ({ children }) => {
-  // const [state, dispatch] = useReducer(FoodReducer, INITIAL_STATE);
-
-  const [foods, setFoods] = useState([]);
-  const [loading, setLoading] = useState(true);
+  const [state, dispatch] = useReducer(FoodReducer, INITIAL_STATE);
+  // const [foods, setFoods] = useState([]);
+  // const [loading, setLoading] = useState(true);
 
   // fetch data without async await
   // useEffect(() => {
@@ -54,41 +54,39 @@ export const FoodContextProvider = ({ children }) => {
   //   };
   // }, []);
 
-  useEffect(() => {
-    const fetchFoods = async () => {
-      try {
-        const listingRef = collection(db, "foods");
-        const q = query(listingRef);
-        const querySnap = await getDocs(q);
+  // useEffect(() => {
+  //   const fetchFoods = async () => {
+  //     try {
+  //       const listingRef = collection(db, "foods");
+  //       const q = query(listingRef);
+  //       const querySnap = await getDocs(q);
 
-        const foodData = [];
-        querySnap.docs.forEach((doc) => {
-          return foodData.push({
-            id: doc.id,
-            ...doc.data(),
-          });
-        });
-        setFoods(foodData);
-        setLoading(false);
-      } catch (error) {
-        console.log("Could not fetch listing");
-      }
-    };
+  //       const foodData = [];
+  //       querySnap.docs.forEach((doc) => {
+  //         return foodData.push({
+  //           id: doc.id,
+  //           ...doc.data(),
+  //         });
+  //       });
+  //       setFoods(foodData);
+  //       setLoading(false);
+  //     } catch (error) {
+  //       console.log("Could not fetch listing");
+  //     }
+  //   };
 
-    return () => {
-      fetchFoods();
-    };
-  }, []);
+  //   return () => {
+  //     fetchFoods();
+  //   };
+  // }, []);
 
   return (
     <FoodContext.Provider
-      value={{ foods: foods, loading: loading }}
+      value={{ foods: state.foods, loading: state.isLoading, dispatch }}
     >
       {children}
     </FoodContext.Provider>
   );
 };
 
-export const FoodContextApi = () => {
-  return useContext(FoodContext);
-};
+export default FoodReducer;

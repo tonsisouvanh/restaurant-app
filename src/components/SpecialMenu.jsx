@@ -75,7 +75,7 @@ const SpecialMenu = ({ foods, loading }) => {
         {/* slider */}
         <div className="">
           <Slider className="overflow-x-clip" {...settings}>
-            {foods.map((item) => (
+            {foods && foods.map((item) => (
               <div
                 key={item.id}
                 className="relative group overflow-hidden w-auto h-[500px]"

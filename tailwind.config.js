@@ -9,7 +9,7 @@ module.exports = {
         'nunito': ['Nunito', 'sans-serif'],
       },
       backgroundImage: {
-        'main-background': "url('/src/assets/images/bgimg.png')",
+        'main-background': "url('/src/assets/images/frontofrestaurant.jpg')",
         'menu-background': "url('/src/assets/images/menu-bg.jpg')",
       },
     },

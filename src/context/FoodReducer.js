@@ -1,9 +1,14 @@
 const FoodReducer = (state, action) => {
   switch (action.type) {
-    case "GETFOODS":
+    case "FETCHFOODS": {
+      return { foods: [...action.payload], isLoading: false };
+    }
+    case "ADDFOOD": {
       return state;
-    case "DELETE":
-      return state.foods.filter(food => food.id !== action.payload.id);
+    }
+    case "DELETEFOOD": {
+      return { foods: state.foods.filter((food) => food.id !== action.id) };
+    }
     default:
       return state;
   }

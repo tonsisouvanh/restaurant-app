@@ -1,18 +1,15 @@
-import React, { useEffect, useRef, useState } from "react";
-import {
-  collection,
-  deleteDoc,
-  doc,
-  onSnapshot,
-} from "firebase/firestore";
+import React, { useRef, useState } from "react";
+import { deleteDoc, doc } from "firebase/firestore";
 import { db } from "../firebase";
 import { getStorage, ref, deleteObject } from "firebase/storage";
 import Modal from "./Modal";
 import { Link } from "react-router-dom";
+import FullSpinner from "./FullSpinner";
+import { useContext } from "react";
+import { FoodContext } from "../context/FoodContext";
 
-
-
-const FoodTable = ({foods}) => {
+const FoodTable = ({ foods, loading }) => {
+  const { dispatch } = useContext(FoodContext);
   const idFoodRef = useRef();
   const imgNameRef = useRef();
   const [modal, setModal] = useState({
@@ -26,7 +23,7 @@ const FoodTable = ({foods}) => {
     setModal({
       isLoading,
       id,
-      img_name
+      img_name,
     });
   };
 
@@ -39,66 +36,30 @@ const FoodTable = ({foods}) => {
   // Handle removing item
   const areUSureDelete = async (choose) => {
     if (choose) {
-      // console.log(choose, idFoodRef.current, imgNameRef.current)
       const id = idFoodRef.current;
       const img = imgNameRef.current;
       try {
         const desertRef = ref(storage, img);
-        deleteObject(desertRef).then(() => {
-          // File deleted successfully
-        }).catch((error) => {
-          // Uh-oh, an error occurred!
-          console.log(error)
-        });
+        deleteObject(desertRef)
+          .then(() => {})
+          .catch((error) => {
+            console.log(error);
+          });
 
         await deleteDoc(doc(db, "foods", id));
+        dispatch({ type: "DELETEFOOD", id: id });
         // setData(data.filter((item) => item.id !== id));
-
-        handleModal(false, '', '');
-
+        handleModal(false, "", "");
       } catch (err) {
         console.log(err);
-        handleModal(false, '', '');
+        handleModal(false, "", "");
       }
     } else {
-      handleModal(false, '', '');
+      handleModal(false, "", "");
     }
   };
 
 
-
-  // Hanlde getting data from firestore
-  // useEffect(() => {
-  //   // LISTEN (REALTIME)
-  //   setIsLoading(true);
-  //   const unsub = onSnapshot(
-  //     collection(db, "foods"),
-  //     (snapShot) => {
-  //       let list = [];
-  //       snapShot.docs.forEach((doc) => {
-  //         list.push({ id: doc.id, ...doc.data() });
-  //       });
-  //       setData(list);
-  //       setIsLoading(false);
-  //     },
-  //     (error) => {
-  //       console.log(error);
-  //       setIsLoading(false);
-  //     }
-  //   );
-
-  //   return () => {
-  //     unsub();
-  //   };
-  // }, []);
-
-  // if (isLoading) {
-  //   return (
-  //     <div>
-  //       <p>Loading...</p>
-  //     </div>
-  //   )
-  // }
   return (
     <>
       <table className="min-w-full text-center mt-3">
@@ -143,49 +104,57 @@ const FoodTable = ({foods}) => {
           </tr>
         </thead>
         <tbody>
-          {foods.map(item => (
-            <tr key={item.id} className="bg-white border-b">
-              <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
-                {item.title}
-              </td>
-              <td className="text-sm text-gray-900  px-6 py-2 whitespace-nowrap">
-                {item.description.length > 20 ? item.description.substring(0,10) + "..." : item.description}
-
-              </td>
-              <td className="text-sm text-gray-900  px-6 py-2 whitespace-nowrap">
-                {item.price}
-              </td>
-              <td className="text-sm text-gray-900  px-6 py-2 whitespace-nowrap">
-                {item.category}
-              </td>
-              <td className="text-sm flex justify-center text-gray-900 px-6 py-2 whitespace-nowrap">
-                <div className="w-[100px]">
-                  <img
-                    className="w-full h-full object-cover"
-                    src={item.img}
-                    alt=""
-                  />
-                </div>
-              </td>
-              <td className="text-sm text-gray-900 px-6 py-2 whitespace-nowrap">
-                <div className="space-x-2">
-                  <Link to={`/admin/food/${item.id}`}>
-                    <button className="text-white rounded-md bg-gray-700 px-3 py-1">
-                      View
+          {foods &&
+            foods.map((food) => (
+              <tr key={food.id} className="bg-white border-b">
+                <td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                  {food.title}
+                </td>
+                <td className="text-sm text-gray-900  px-6 py-2 whitespace-nowrap">
+                  {food.description.length > 20
+                    ? food.description.substring(0, 10) + "..."
+                    : food.description}
+                </td>
+                <td className="text-sm text-gray-900  px-6 py-2 whitespace-nowrap">
+                  {food.price}
+                </td>
+                <td className="text-sm text-gray-900  px-6 py-2 whitespace-nowrap">
+                  {food.category}
+                </td>
+                <td className="text-sm flex justify-center text-gray-900 px-6 py-2 whitespace-nowrap">
+                  <div className="w-[100px]">
+                    <img
+                      className="w-full h-full object-cover"
+                      src={food.img}
+                      alt=""
+                    />
+                  </div>
+                </td>
+                <td className="text-sm text-gray-900 px-6 py-2 whitespace-nowrap">
+                  <div className="space-x-2">
+                    <Link to={`/admin/food/${food.id}`}>
+                      <button className="text-white rounded-md bg-gray-700 px-3 py-1">
+                        View
+                      </button>
+                    </Link>
+                    <button
+                      onClick={() => handleDelete(food.id, food.img_name)}
+                      className="text-white rounded-md bg-red-500 px-3 py-1"
+                    >
+                      Delete
                     </button>
-                  </Link>
-                  <button onClick={() => handleDelete(item.id, item.img_name)} className="text-white rounded-md bg-red-500 px-3 py-1">
-                    Delete
-                  </button>
-                </div>
-              </td>
-            </tr>
-          ))}
+                  </div>
+                </td>
+              </tr>
+            ))}
         </tbody>
       </table>
       {modal.isLoading && (
         <Modal
-          title={"Remove food"} message={"Are you sure you want to remove this item"} cancel_msg={"Cancel"} onModal={areUSureDelete}
+          title={"Remove food"}
+          message={"Are you sure you want to remove this item"}
+          cancel_msg={"Cancel"}
+          onModal={areUSureDelete}
           isLoading={modal.isLoading}
         />
       )}

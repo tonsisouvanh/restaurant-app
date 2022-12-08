@@ -65,7 +65,7 @@ const Footer = ({ foods }) => {
             <h2 className={headerStyle}>GALLERY</h2>
             <div className="grid grid-cols-2 gap-1">
               {foods &&
-                foods.map((item) => (
+                foods.slice(0,8).map((item) => (
                   <div key={item.id} className="w-full h-[100px]">
                     <img
                       className="w-full h-full object-fit-cover"
