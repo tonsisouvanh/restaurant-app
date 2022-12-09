@@ -86,7 +86,7 @@ function OurMenu({ foods, loading }) {
 
           {/* slider */}
           <div className="space-y-5">
-            <ul className="flex flex-col gap-3 mb-10 items-center justify-center sm:flex-row sm:gap-5 md:gap-14 lg:gap-20 md:text-lg">
+            <ul className="flex gap-8 mb-10 items-center justify-start overflow-x-scroll sm:flex-row sm:gap-5 md:gap-14 lg:gap-20 md:text-lg">
               <li
                 onClick={() => setCurrCate("ALL")}
                 className={`cursor-pointer hover:text-gray-200 ${
