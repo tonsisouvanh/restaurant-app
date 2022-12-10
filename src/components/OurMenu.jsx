@@ -72,7 +72,7 @@ function OurMenu({ foods, loading }) {
   }
 
   return (
-    <div className="relative bg-menu-background w-full bg-cover bg-no-repeat">
+    <div className="relative bg-menu-background w-full bg-right-top bg-no-repeat">
       <div className="rounded-div px-3 py-8 md:py-10 lg:py-14">
         <div className="text-white space-y-3 font-nunito lg:space-y-6">
           <h3 className="text-2xl font-bold text-center md:text-3xl lg:text-4xl">
@@ -86,7 +86,7 @@ function OurMenu({ foods, loading }) {
 
           {/* slider */}
           <div className="space-y-5">
-            <ul className="flex gap-8 mb-10 items-center justify-start overflow-x-scroll sm:flex-row sm:gap-5 md:gap-14 lg:gap-20 md:text-lg">
+            <ul className="scrollbar-hide flex gap-8 mb-10 items-center justify-start overflow-x-scroll sm:flex-row sm:gap-5 md:gap-14 lg:gap-20 md:text-lg">
               <li
                 onClick={() => setCurrCate("ALL")}
                 className={`cursor-pointer hover:text-gray-200 ${

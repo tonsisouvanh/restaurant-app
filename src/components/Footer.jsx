@@ -2,6 +2,7 @@ import { TiSocialInstagram } from "react-icons/ti";
 import { BsFacebook, BsFillTelephoneFill, BsTwitter } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { IoLocationSharp } from "react-icons/io5";
+import GoogleMaps from "./GoogleMaps";
 
 const headerStyle = "text-xl font-bold lg:text-lg";
 
@@ -65,64 +66,15 @@ const Footer = ({ foods }) => {
             <h2 className={headerStyle}>GALLERY</h2>
             <div className="grid grid-cols-2 gap-1">
               {foods &&
-                foods.slice(0,8).map((item) => (
+                foods.slice(0, 8).map((item) => (
                   <div key={item.id} className="w-full h-[100px]">
                     <img
                       className="w-full h-full object-fit-cover"
                       src={item.img}
-                      alt=""
+                      alt="img"
                     />
                   </div>
                 ))}
-              {/* <div className="w-full h-[100px]">
-                <img
-                  className="w-full h-full object-fit-cover"
-                  src="https://www.laos-guide-999.com/images/Lao-food-kaopoon.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="w-full h-[100px]">
-                <img
-                  className="w-full h-full object-fit-cover"
-                  src="https://laostravel.com/images/2020/12/Lao-Sausage-Sai-Oua.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="w-full h-[100px]">
-                <img
-                  className="w-full h-full object-fit-cover"
-                  src="https://laostravel.com/images/2020/12/Lao-Sausage-Sai-Oua.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="w-full h-[100px]">
-                <img
-                  className="w-full h-full object-fit-cover"
-                  src="https://laostravel.com/images/2020/12/Lao-Sausage-Sai-Oua.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="w-full h-[100px]">
-                <img
-                  className="w-full h-full object-fit-cover"
-                  src="https://laostravel.com/images/2020/12/Lao-Sausage-Sai-Oua.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="w-full h-[100px]">
-                <img
-                  className="w-full h-full object-fit-cover"
-                  src="https://laostravel.com/images/2020/12/Lao-Sausage-Sai-Oua.jpg"
-                  alt=""
-                />
-              </div>
-              <div className="w-full h-[100px]">
-                <img
-                  className="w-full h-full object-fit-cover"
-                  src="https://laostravel.com/images/2020/12/Lao-Sausage-Sai-Oua.jpg"
-                  alt=""
-                />
-              </div> */}
             </div>
           </div>
 
@@ -146,10 +98,11 @@ const Footer = ({ foods }) => {
               </div>
             </div>
             <div>
-              <img
+              {/* <img
                 src="https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg"
                 alt=""
-              />
+              /> */}
+              <GoogleMaps />
             </div>
           </div>
         </div>
