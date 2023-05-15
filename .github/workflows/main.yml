@@ -11,10 +11,10 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@v2.3.2
       - name: Install Dependencies
-        run: npm install      
+        run: npm install
       - name: Build
         env:
-          CI: false        
+          CI: false
         run: npm run build
       - name: Archive Production Artifact
         uses: actions/upload-artifact@v2
@@ -39,3 +39,4 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          FIREBASE_API_KEY: ${{ secrets.FIREBASE_API_KEY }}
