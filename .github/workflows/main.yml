@@ -21,8 +21,7 @@ jobs:
             REACT_APP_MESSAGING_SENDER: ${{ secrets.REACT_APP_MESSAGING_SENDER }}
             REACT_APP_APP_ID: ${{ secrets.REACT_APP_APP_ID }}
             REACT_APP_GOOGLE_MAP_API: ${{ secrets.REACT_APP_GOOGLE_MAP_API }}
-        env:
-          CI: false
+            CI: false
         run: npm run build
       - name: Archive Production Artifact
         uses: actions/upload-artifact@v2
