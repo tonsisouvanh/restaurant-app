@@ -5,7 +5,6 @@ on:
       - branch/deploy
 env:
     FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
-    FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY  }}
 jobs:
   build:
     name: Build
