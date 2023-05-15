@@ -3,6 +3,9 @@ on:
   push:
     branches:
       - branch/deploy
+env:
+    GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+    FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY  }}
 jobs:
   build:
     name: Build
@@ -37,6 +40,6 @@ jobs:
         uses: w9jds/firebase-action@master
         with:
           args: deploy --only hosting
-        env:
-          GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
-          FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY  }}
+        # env:
+        #   GCP_SA_KEY: ${{ secrets.GCP_SA_KEY }}
+        #   FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY  }}
