@@ -3,14 +3,6 @@ on:
   push:
     branches:
       - branch/deploy
-  env:
-    REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
-    REACT_APP_FIREBASE_AUTH_DOMAIN: ${{ secrets.REACT_APP_FIREBASE_AUTH_DOMAIN }}
-    REACT_APP_FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }}
-    REACT_APP_FIREBASE_STORAGE_BUCKET: ${{ secrets.REACT_APP_FIREBASE_STORAGE_BUCKET }}
-    REACT_APP_MESSAGING_SENDER: ${{ secrets.REACT_APP_MESSAGING_SENDER }}
-    REACT_APP_APP_ID: ${{ secrets.REACT_APP_APP_ID }}
-    REACT_APP_GOOGLE_MAP_API: ${{ secrets.REACT_APP_GOOGLE_MAP_API }}
 jobs:
   build:
     name: Build
@@ -47,3 +39,10 @@ jobs:
           args: deploy --only hosting
         env:
           FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
+          REACT_APP_FIREBASE_API_KEY: ${{ secrets.REACT_APP_FIREBASE_API_KEY }}
+          REACT_APP_FIREBASE_AUTH_DOMAIN: ${{ secrets.REACT_APP_FIREBASE_AUTH_DOMAIN }}
+          REACT_APP_FIREBASE_PROJECT_ID: ${{ secrets.REACT_APP_FIREBASE_PROJECT_ID }}
+          REACT_APP_FIREBASE_STORAGE_BUCKET: ${{ secrets.REACT_APP_FIREBASE_STORAGE_BUCKET }}
+          REACT_APP_MESSAGING_SENDER: ${{ secrets.REACT_APP_MESSAGING_SENDER }}
+          REACT_APP_APP_ID: ${{ secrets.REACT_APP_APP_ID }}
+          REACT_APP_GOOGLE_MAP_API: ${{ secrets.REACT_APP_GOOGLE_MAP_API }}
