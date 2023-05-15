@@ -50,5 +50,6 @@ jobs:
           export REACT_APP_MESSAGING_SENDER=${{ secrets.REACT_APP_MESSAGING_SENDER }}
           export REACT_APP_APP_ID=${{ secrets.REACT_APP_APP_ID }}
           export REACT_APP_GOOGLE_MAP_API=${{ secrets.REACT_APP_GOOGLE_MAP_API }}
+          export FIREBASE_TOKEN=${{ secrets.FIREBASE_TOKEN }}
       - name: Deploy to Firebase
         run: firebase deploy --only hosting
