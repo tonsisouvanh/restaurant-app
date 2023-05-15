@@ -120,7 +120,7 @@ function OurMenu({ foods, loading }) {
                   .map((item) => (
                     <div
                       key={item.id}
-                      className="overflow-hidden rounded-xl bg-[#232830] border-white border-2 transition-all hover:scale-[1.03]"
+                      className="overflow-hidden rounded-xl shadow-lg bg-[#232830] transition-all hover:scale-[1.03]"
                     >
                       <div className="w-full border-b-8 border-yellow-500 h-[300px] lg:h-[230px] overflow-hidden rounded-bl-[4rem]">
                         <img
@@ -129,7 +129,7 @@ function OurMenu({ foods, loading }) {
                           alt=""
                         />
                       </div>
-                      <div className="border w-full flex flex-col gap-3 p-3">
+                      <div className=" w-full flex flex-col gap-3 p-3">
                         <h3 className="font-bold text-lg h-[60px]">
                           {item.title}
                         </h3>

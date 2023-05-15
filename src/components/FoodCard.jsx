@@ -58,7 +58,7 @@ const FoodCard = ({ food }) => {
   };
 
   return (
-    <div className="border rounded-md shadow-lg overflow-hidden">
+    <div className="borde rounded-md shadow-lg overflow-hidden">
       <div className="w-full h-auto">
         <img
           className="w-full h-full object-cover"
