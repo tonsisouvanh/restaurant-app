@@ -3,7 +3,7 @@ import { BsFacebook, BsFillTelephoneFill, BsTwitter } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { IoLocationSharp } from "react-icons/io5";
 import GoogleMaps from "./GoogleMaps";
-
+import logo from '../assets/images/logo.png'
 const headerStyle = "text-xl font-bold lg:text-lg";
 
 const Footer = ({ foods }) => {
@@ -13,7 +13,8 @@ const Footer = ({ foods }) => {
         <div className="grid grid-cols-1 grid-flow-row content center gap-16 sm:grid-cols-2 lg:grid-cols-4 lg:gap-8">
           {/* PHAYVANH. */}
           <div className="self-start w-full h-auto gap-5 flex flex-col items-center justify-center">
-            <h2 className={headerStyle}>PHAYVANH.</h2>
+            <img className="w-20" src={logo} alt="" />
+            <h2 className={headerStyle}>THAI & LAO RESTUARANT</h2>
             <p className="text-center lg:text-left">
               Far far away, behind the word mountains, far from the countries
               Vokalia and Consonantia, there live the blind texts. Separated
@@ -86,15 +87,15 @@ const Footer = ({ foods }) => {
             <div className="space-y-3">
               <div className="flex gap-4 items-center">
                 <MdEmail className="text-lg" />
-                <span>contact@hotmail.com</span>
+                <span>lxayalath07@yahoo.com</span>
               </div>
               <div className="flex gap-4 items-center">
                 <BsFillTelephoneFill className="text-lg" />
-                <span>+ 10 378 483 6782</span>
+                <span> 510-327-4006</span>
               </div>
               <div className="flex gap-4 items-start">
                 <IoLocationSharp className="text-3xl" />
-                <span>34 Street Name, City Name Here, United States</span>
+                <span>1581 Sycamore Ave. #2 Hercules, CA94547</span>
               </div>
             </div>
             <div>
