@@ -44,7 +44,7 @@ import { db } from "../firebase";
 
 function OurMenu({ foods, loading }) {
   const [categories, setCategories] = useState([]);
-  const [cateFilter, setCateFilter] = useState();
+  const [currCate, setCurrCate] = useState("ALL");
   useEffect(() => {
     const fetchFoods = async () => {
       try {
@@ -67,13 +67,12 @@ function OurMenu({ foods, loading }) {
     fetchFoods();
   }, []);
 
-
   if (loading) {
     return <FullSpinner />;
   }
 
   return (
-    <div className="relative bg-menu-background w-full bg-cover bg-no-repeat">
+    <div className="relative bg-menu-background w-full bg-right-top bg-no-repeat">
       <div className="rounded-div px-3 py-8 md:py-10 lg:py-14">
         <div className="text-white space-y-3 font-nunito lg:space-y-6">
           <h3 className="text-2xl font-bold text-center md:text-3xl lg:text-4xl">
@@ -87,68 +86,64 @@ function OurMenu({ foods, loading }) {
 
           {/* slider */}
           <div className="space-y-5">
-            <ul className="flex flex-col gap-3 mb-10 items-center justify-center sm:flex-row sm:gap-5 md:gap-14 lg:gap-20 md:text-lg">
+            <ul className="scrollbar-hide flex gap-8 mb-10 items-center justify-start overflow-x-scroll sm:flex-row sm:gap-5 md:gap-14 lg:gap-20 md:text-lg">
+              <li
+                onClick={() => setCurrCate("ALL")}
+                className={`cursor-pointer hover:text-gray-200 ${
+                  currCate === "ALL"
+                    ? "bg-yellow-500 px-3 rounded-md font-bold"
+                    : ""
+                }`}
+              >
+               ALL
+              </li>
               {categories.map((cate) => (
                 <li
                   key={cate.id}
-                  className="cursor-pointer hover:text-gray-200"
+                  onClick={() => setCurrCate(cate.category)}
+                  className={`cursor-pointer hover:text-gray-200 ${
+                    cate.category === currCate
+                      ? "bg-yellow-500 px-3 rounded-md font-bold"
+                      : ""
+                  }`}
                 >
                   {cate.category}
                 </li>
               ))}
             </ul>
 
-            {/* Slider menu */}
-            {/* <Slider className="overflow-x-clip" {...settings}>
-              {foods.map((item) => (
-                <div className="space-y-3 bg-white text-black p-3 rounded-lg shadow-lg">
-                  <div className="w-[100px] h-[100px] mx-auto">
-                    <img
-                      className="w-full h-full rounded-full object-cover"
-                      src={item.url}
-                      alt=""
-                    />
-                  </div>
-                  <h3 className="text-center">Fried Chicken</h3>
-                  <p className="text-center">
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit.
-                  </p>
-                </div>
-                
-              ))}
-            </Slider> */}
-
             {/* Grid menu */}
             <div className="grid grid-cols-1 gap-6 grid-flow-row sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
               {foods &&
-                foods.map((item) => (
-                  <div
-                    key={item.id}
-                    className="overflow-hidden rounded-xl bg-[#232830] border-white border-2 transition-all hover:scale-[1.03]"
-                  >
-                    <div className="w-full border-b-8 border-yellow-500 h-[300px] lg:h-[230px] overflow-hidden rounded-bl-[4rem]">
-                      <img
-                        className="w-full h-full object-cover"
-                        src={item.img}
-                        alt=""
-                      />
-                    </div>
-                    {/* <div className="h-full border flex flex-col gap-3 p-5"> */}
-                    <div className="border w-full flex flex-col gap-3 p-3">
-                      <h3 className="font-bold text-lg h-[60px]">
-                        {item.title}
-                      </h3>
-                      <p className="text-sm h-[90px]">
-                        {truncateText(item.description, 20, 0, 100)}
-                      </p>
-                      <div className="w-full flex items-center justify-between">
-                        <span className="text-yellow-400 font-bold text-lg">
-                          ${item.price}
-                        </span>
+                foods
+                  .filter((f) => currCate === "ALL" ? f.id !== "" : f.category === currCate )
+                  .map((item) => (
+                    <div
+                      key={item.id}
+                      className="overflow-hidden rounded-xl bg-[#232830] border-white border-2 transition-all hover:scale-[1.03]"
+                    >
+                      <div className="w-full border-b-8 border-yellow-500 h-[300px] lg:h-[230px] overflow-hidden rounded-bl-[4rem]">
+                        <img
+                          className="w-full h-full object-cover"
+                          src={item.img}
+                          alt=""
+                        />
+                      </div>
+                      <div className="border w-full flex flex-col gap-3 p-3">
+                        <h3 className="font-bold text-lg h-[60px]">
+                          {item.title}
+                        </h3>
+                        <p className="text-sm h-[90px]">
+                          {truncateText(item.description, 20, 0, 100)}
+                        </p>
+                        <div className="w-full flex items-center justify-between">
+                          <span className="text-yellow-400 font-bold text-lg">
+                            ${item.price}
+                          </span>
+                        </div>
                       </div>
                     </div>
-                  </div>
-                ))}
+                  ))}
             </div>
           </div>
         </div>

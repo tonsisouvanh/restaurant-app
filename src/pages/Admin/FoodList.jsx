@@ -12,6 +12,7 @@ import { db } from "../../firebase";
 
 const FoodList = () => {
   const { foods, loading, dispatch } = useContext(FoodContext);
+  
   useEffect(() => {
     const fetchFoods = async () => {
       try {

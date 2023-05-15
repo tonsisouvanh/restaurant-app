@@ -1,4 +1,28 @@
 import { IoCallSharp } from "react-icons/io5";
+import imgres1 from "../assets/images/res-view-1.jpg";
+
+const images = [
+  {
+    id: 1,
+    img: "https://images.squarespace-cdn.com/content/v1/5c76b1ff16b6407adcf96732/1624299511259-2AK334JFY575OEBZ7QSK/IMG_4071.jpg",
+    styles: "row-span-2 col-span-2",
+  },
+  {
+    id: 2,
+    img: "https://images.ctfassets.net/3s5io6mnxfqz/1rpUj0lbF4UraDAIt1eXjr/fbfa8beb2fde3a2686020165e983a7af/AdobeStock_357911175_2.jpeg",
+    styles: "col-span-2",
+  },
+  {
+    id: 3,
+    img: "https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&w=1000&q=80",
+    styles: "col-start-3",
+  },
+  {
+    id: 4,
+    img: imgres1,
+    styles: "col-start-4",
+  },
+];
 
 const About = () => {
   return (
@@ -6,40 +30,26 @@ const About = () => {
       <div className="px-3 py-8 md:py-10 lg:py-14">
         {/* Row 1 */}
         <div className="flex flex-col-reverse gap-5 lg:flex-row">
-          <div className="grid grid-cols-4 grid-rows-2 gap-1">
-            <div className="row-span-2 col-span-2">
-              <img
-                className="w-full h-full object-cover"
-                src="https://images.squarespace-cdn.com/content/v1/5c76b1ff16b6407adcf96732/1624299511259-2AK334JFY575OEBZ7QSK/IMG_4071.jpg"
-                alt=""
-              />
-            </div>
-            <div className="col-span-2">
-              <img
-                className="w-full h-full object-cover"
-                src="https://images.ctfassets.net/3s5io6mnxfqz/1rpUj0lbF4UraDAIt1eXjr/fbfa8beb2fde3a2686020165e983a7af/AdobeStock_357911175_2.jpeg"
-                alt=""
-              />
-            </div>
-            <div className="col-start-3">
-              <img
-                className="w-full h-full object-cover"
-                src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&w=1000&q=80"
-                alt=""
-              />
-            </div>
-            <div className="col-start-4">
-              <img
-                className="w-full h-full object-cover"
-                src="https://images.unsplash.com/photo-1590846406792-0adc7f938f1d?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxzZWFyY2h8OXx8cmVzdGF1cmFudHxlbnwwfHwwfHw%3D&w=1000&q=80"
-                alt=""
-              />
-            </div>
+          <div className="grid grid-cols-4 grid-rows-2 gap-1 lg:flex-auto lg:w-72">
+            {images &&
+              images.map((item) => (
+                <div className={item.styles}>
+                  <img
+                    className="w-full h-full object-cover"
+                    src={item.img}
+                    alt="img"
+                  />
+                </div>
+              ))}
           </div>
-          <div className="font-nunito space-y-3">
+          <div className="font-nunito space-y-3 lg:flex-auto lg:w-32">
             <div>
-              <h3 className="text-2xl font-bold text-yellow-500 md:text-3xl">ABOUT</h3>
-              <h3 className="text-2xl font-bold md:text-3xl">PHAYVANH RESTAURANT</h3>
+              <h3 className="text-2xl font-bold text-yellow-500 md:text-3xl">
+                ABOUT
+              </h3>
+              <h3 className="text-2xl font-bold md:text-3xl">
+                THAI & LAO RESTAURANT
+              </h3>
             </div>
             <p className="md:text-lg">
               Lorem ipsum, dolor sit amet consectetur adipisicing elit.
@@ -54,7 +64,7 @@ const About = () => {
               <h2>Call</h2>
               <div className="flex items-center">
                 <IoCallSharp />
-                <h2>+10 378 483 586</h2>
+                <h2>510-327-4006</h2>
               </div>
             </div>
           </div>

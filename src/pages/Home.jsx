@@ -12,7 +12,7 @@ import { FoodContext } from "../context/FoodContext";
 import { useContext } from "react";
 
 const Home = () => {
-  const { foods, dispatch,loading } = useContext(FoodContext);
+  const { foods, dispatch, loading } = useContext(FoodContext);
 
   useEffect(() => {
     const fetchFoods = async () => {
@@ -28,7 +28,7 @@ const Home = () => {
             ...doc.data(),
           });
         });
-        dispatch({type: "FETCHFOODS", payload: foodData})
+        dispatch({ type: "FETCHFOODS", payload: foodData });
       } catch (error) {
         console.log("Could not fetch listing");
       }
@@ -38,13 +38,13 @@ const Home = () => {
 
   return (
     <>
-      <Navbar />
-      <Main />
-      <SpecialMenu foods={foods} loading={loading} />
-      <OurMenu foods={foods} loading={loading} />
-      <About foods={foods} loading={loading} />
-      <GallerySlider foods={foods} loading={loading} />
-      <Footer foods={foods} loading={loading} />
+        <Navbar />
+        <Main />
+        <SpecialMenu foods={foods} loading={loading} />
+        <OurMenu foods={foods} loading={loading} />
+        <About foods={foods} loading={loading} />
+        <GallerySlider foods={foods} loading={loading} />
+        <Footer foods={foods} loading={loading} />
     </>
   );
 };

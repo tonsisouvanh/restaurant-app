@@ -23,7 +23,7 @@ const Navbar = () => {
           navScroll ? "bg-black/90 text-black" : "bg-transparent"
         }`}
       >
-        <div className="rounded-div text-white flex items-center justify-between px-5 h-[70px]">
+        <div className="rounded-div text-white flex items-center justify-between px-5 h-[80px]">
           <div className="w-[65px]">
             {/* <h1 className="text-2xl text-bold hidden sm:flex">PHAYVANH.</h1> */}
             <img src={logo} className="w-full h-full object-cover" alt="" />
@@ -78,7 +78,7 @@ const Navbar = () => {
           {!nav ? (
             <AiOutlineMenu
               size={25}
-              className="sm:hidden"
+              className="sm:hidden cursor-pointer"
               onClick={() => setNav(!nav)}
             />
           ) : null}
