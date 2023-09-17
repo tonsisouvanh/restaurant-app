@@ -35,7 +35,6 @@ const FoodList = () => {
     fetchFoods();
   }, [dispatch]);
 
-  console.log(foods);
 
   if (loading) {
     return <FullSpinner />;
